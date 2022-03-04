@@ -7,19 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
-      <tr><td    >ZWL</td><td    >Zimbabwean Dollar</td><td    >Zimbabwe</td></tr>
-        </table>
+  
         <table>
-            <tr><td     width="160px"><h6 class="mb-1">Currency Code</h6></td><td     width="250px"><h6 class="mb-1">Currency Name</h6></td><td    ><h6 class="mb-1">Country</h6></td></tr>
-            <tr><td    >LYD</td><td    >Libyan Dinar</td><td    >Libya</td></tr>
+             <tr><td    >LYD</td><td    >Libyan Dinar</td><td    >Libya</td></tr>
             <tr><td    >SSP</td><td    >South Sudanese Pound</td><td    >South Sudan</td></tr>
             <tr><td    >SYP</td><td    >Syrian Pound</td><td    >Syria</td></tr>
             <tr><td    >VES</td><td    >Venezuelan Bolívar Soberano</td><td    >Venezuela</td></tr>
             <tr><td    >YER</td><td    >Yemeni Rial</td><td    >Yemen</td></tr>
            
-        <tr><td     width="160px"><h6 class="mb-1">Currency Code</h6></td><td     width="250px"><h6 class="mb-1">Currency Name</h6></td><td    ><h6 class="mb-1">Country</h6></td></tr>
-        <tr><td    >AED</td><td    >UAE Dirham</td><td    >United Arab Emirates</td></tr>
+         <tr><td    >AED</td><td    >UAE Dirham</td><td    >United Arab Emirates</td></tr>
         <tr><td    >AFN</td><td    >Afghan Afghani</td><td    >Afghanistan</td></tr>
         <tr><td    >ALL</td><td    >Albanian Lek</td><td    >Albania</td></tr>
         <tr><td    >AMD</td><td    >Armenian Dram</td><td    >Armenia</td></tr>
@@ -189,18 +185,24 @@
             //{Symbol:$ ,Currency Name: US Dollar, Country:USE}
       window.onload=function()
       {
-            var Currency=[];
-            var row=document.getElementsByTagName("tr")[0];
-            console.log(row);
-            var rowColumn1=row.getElementsByTagName("td")[0];
-            console.log(rowColumn1);
+            var CountryCurrency=[];
+         
+            var Code;
+            var Currency;
+            var Country;
+            var allrows=[];
+            allrows=document.getElementsByTagName("tr");
+            allrows= Array.prototype.slice.call(allrows)
+            console.log(allrows)
+            allrows.forEach(data=>{
+                   Code= data.getElementsByTagName("td")[0].innerHTML;
+                   Currency=data.getElementsByTagName("td")[1].innerHTML;
+                   Country=data.getElementsByTagName("td")[2].innerHTML;
+                   CountryCurrency.push({Code:Code,Currency:Currency,Country:Country})
 
-            var rowColumn1=row.getElementsByTagName("td")[0];
-            console.log(rowColumn1);
+            })
 
-
-            var rowColumn1=row.getElementsByTagName("td")[0];
-            console.log(rowColumn1);
+            console.log(CountryCurrency);
 
 
       }
