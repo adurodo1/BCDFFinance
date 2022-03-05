@@ -185,6 +185,8 @@
             //{Symbol:$ ,Currency Name: US Dollar, Country:USE}
       window.onload=function()
       {
+
+        //Create Country Currency Symbol Json
             var CountryCurrency=[];
          
             var Code;
@@ -204,8 +206,31 @@
 
             console.log(CountryCurrency);
 
+           // e.preventDefault();
+    const url = 'http://localhost:5000/';
+    const data=  {
+     data:CountryCurrency
+  };
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  }
+  
+    // console.log("sdfdsfs");
+     
+  
+  
+//    fetch(url, options)    .then(console.log("success")) ;
+
 
       }
+
+
+
+
         </script>
 </body>
 </html>

@@ -6,14 +6,25 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
+import routes from './routes/bcdfRoutes.js';
+//import {addAllCountries} from './controllers/bcdfController.js'
+
 const app= express();
 
-app.use(cors({
-    origin:"http://127.0.0.1:5000",
-    methods:["GET","POST"]
-}))
+mongoose.Promise= global.Promise;
+mongoose.connect('mongodb://localhost/BCDF',{useNewUrlParser:true,useUnifiedTopology:true})
+
+
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+//dont use again
+//app.post("/",addAllCountries)
 
 app.set('PORT',process.env.PORT)
+
+routes(app);
 
 app.listen(app.get('PORT'),()=>{
     console.log(app.get('PORT'))
