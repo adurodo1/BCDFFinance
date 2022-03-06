@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import React from "react";
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import {Link} from 'react-router-dom';
 import {CountryCurrencySelector} from './CountryCurrencySelector'
 
 
@@ -74,7 +75,7 @@ return(
     {props.searchvalue===''?coins.map((data,key)=>(
 
 <tr key={key}>
-      <td>{data.name}</td>
+      <td><Link to='/Single' state={data}>{data.name}</Link></td>
       <td>{data.rank}</td>
       <td>{data.price_usd}</td>
       <td>{data.price_btc}</td>

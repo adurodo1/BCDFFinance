@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Nav,Navbar,NavDropdown,Container,Button,Form,FormControl} from 'react-bootstrap'
- import {SearchForm} from './Components/SearchForm'
 
+ import {BrowserRouter as Router,Routes,Route, Link} from "react-router-dom";
 import { CoinList } from './Components/CoinList';
+import { CoinSingle } from './Components/CoinSingle';
+import {SearchForm} from './Components/SearchForm'
 import { useState } from 'react';
 
 function App() {
@@ -35,18 +37,11 @@ function App() {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="#action1">Home</Nav.Link>
-        <Nav.Link href="#action2">Link</Nav.Link>
-        <NavDropdown title="Link" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5">
-            Something else here
-          </NavDropdown.Item>
-        </NavDropdown>
+        <Nav.Link href="/">Home</Nav.Link>
+      
+  
         <Nav.Link href="#" disabled>
-          Link
+          GitHub
         </Nav.Link>
       </Nav>
       <Form className="d-flex">
@@ -58,7 +53,17 @@ function App() {
   </Container>
 </Navbar>
 
-<CoinList searchvalue={searchformvalue}/>
+
+<Router>
+<Routes>
+   <Route path="/" element={<CoinList searchvalue={searchformvalue}/>} />
+   <Route path="/Single" element={<CoinSingle/>} />
+ 
+
+
+   </Routes>
+</Router>
+
 </>
 
   );
