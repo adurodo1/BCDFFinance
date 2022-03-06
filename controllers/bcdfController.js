@@ -11,7 +11,6 @@ const CountryCurrency= mongoose.model('CountryCurrency',CountrySchema);
 
 const CurrencyToDollar= mongoose.model('CurrencyToDollar',CurrencyToDollarSchema)
 
-
 // add all countries
 
 export const addAllCountries =(req,res)=>{
@@ -39,21 +38,9 @@ export const addAllCountries =(req,res)=>{
     }
 
 
-export const getAllRates=(req,res)=>{
+export const addAllRates=(req,res)=>{
 
-//     fetch("https://exchangerate-api.p.rapidapi.com/rapid/latest/USD", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "exchangerate-api.p.rapidapi.com",
-// 		"x-rapidapi-key": "1c937a06bfmsh36dbf08a71e315fp1188cbjsn7dd66513661d"
-// 	}
-// })
-// .then(response => {
-// 	res.json(response);
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
+ 
 
 const options = {
     method: 'GET',
@@ -69,11 +56,11 @@ const options = {
       if (error) throw new Error(error);
   
       body= JSON.parse(body)
-      //console.log(body);
+   
 
       var keys = Object.keys(body.rates);
 
-      //res.json({data:body.rates})
+  
 
       for(var i=0;i<keys.length;i++)
 {
@@ -85,22 +72,74 @@ const options = {
         Currency:keys[i],
         DollarAmount:body.rates[keys[i]]});
      //console.log(arr[i])
-     newCurrency.save((err,todo)=>{
-        if(err)
-        console.log(err);
-        //res.json(todo);
-        console.log(todo)
+
+    //  newCurrency.save((err,todo)=>{
+    //     if(err)
+    //     console.log(err);
+    //     //res.json(todo);
+    //     console.log(todo)
     
-    })
+    // })
 }
   });
 
-
-
-
-
-
-
-
-  
 }
+
+export const getAllCountryCourencies =(req,res)=>{
+
+
+    CountryCurrency.find({},(err,result)=>{
+        if(err)
+         console.log(err)
+         else 
+           res.json(result)
+
+    })
+
+}
+
+
+export const getAllCurrencyToDollar =(req,res)=>{
+
+
+    CurrencyToDollar.find({id:req.body.id},(err,result)=>{
+        if(err)
+         console.log(err)
+         else 
+           res.json(result)
+
+    })
+
+}
+
+
+// all bit coins on count
+//
+
+
+//logic to set 
+
+export const getAllBitCoinsData =(req,res)=>{
+    const options = {
+        method: 'GET',
+        url: 'https://api.coinlore.net/api/tickers/',
+  
+      };
+   
+    
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    body= JSON.parse(body)
+
+    res.json(body.data);
+ 
+
+   // var keys = Object.keys(body.rates);
+
+
+ 
+});
+
+    
+    }

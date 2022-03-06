@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 //dont use again
 //app.post("/",addAllCountries)
 
-app.set('PORT',process.env.PORT)
+app.set('PORT',3000||process.env.PORT)
 
 routes(app);
 

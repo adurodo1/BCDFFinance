@@ -1,0 +1,1 @@
+.find({},()=>)//gets all list in database
